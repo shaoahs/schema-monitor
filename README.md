@@ -30,6 +30,7 @@
 | 31 | AnsibleProgress | server→client | ansible 執行進度（hostname, task） |
 | 32 | AnsibleDone | server→client | ansible 執行完成（ok, changed, failed, unreachable, started_at, finished_at） |
 | 33 | AnsibleHosts | server→client | ansible checkbox 開關（mac, enabled），client 連線時補送 + BootOS 後廣播 |
+| 40 | ServerInfo | server→client | server 啟動時間（started_at），client 連線時立即送出 |
 
 ## 快取規則
 
@@ -37,6 +38,7 @@
 - cmd 15、21–23：不快取，直接廣播（按需資料，每次請求重新收集）
 - cmd 24、31、32：不快取，即時廣播
 - cmd 33：不快取，client 連線時由 server 從 ansibleHost map 補送
+- cmd 40：不快取，client 連線時由 server 即時送出
 
 ## 所有 schema 欄位
 

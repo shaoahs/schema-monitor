@@ -21,6 +21,7 @@
 | 13 | UsageNETInit | device→server | 網路初始化（ifaces array: iface, link_mbps，連線時送一次） |
 | 14 | InfoStatus | device→server | Pool 狀態、失敗次數、NFS 狀態，每 5 分鐘 |
 | 15 | InfoProc | device→server | 前 20 筆程式使用量（依 CPU 排序，按需回傳） |
+| 16 | InfoSensor | device→server | 所有溫度感測器（sensors array: label, celsius），每 30 秒 |
 | 20 | ReqDetail | client→device | client 請求詳細資料（type: ram/cpu/net/proc），由 server 轉發 |
 | 21 | DetailRAM | device→client | RAM slot 詳細（容量/類型/速度/製造商/型號，按需回傳） |
 | 22 | DetailCPU | device→client | CPU 詳細（flags/快取/NUMA/Socket，按需回傳） |
@@ -34,7 +35,7 @@
 
 ## 快取規則
 
-- cmd 1–14：server/monitor 快取最新一筆，新 client 連線時補送
+- cmd 1–16：server/monitor 快取最新一筆，新 client 連線時補送
 - cmd 15、21–23：不快取，直接廣播（按需資料，每次請求重新收集）
 - cmd 24、31、32：不快取，即時廣播
 - cmd 33：不快取，client 連線時由 server 從 ansibleHost map 補送

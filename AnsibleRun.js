@@ -7,6 +7,7 @@ let schema = {
     { name: 'mac',         type: 'string' },
     { name: 'hostname',    type: 'string' },
     { name: 'monero_mode', type: 'string' }, // 'solo' | 'pool'
+    { name: 'tags',        type: 'string' }, // ansible --tags, empty = no tag
   ]
 };
 export { schema }
